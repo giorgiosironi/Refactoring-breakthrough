@@ -16,11 +16,19 @@ class CoffeeMachineTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(0, $this->machine->getSupplies('Chocolate'));
     }
 
-    public function testMachineCanBeLoadedWithSupplies()
+    public function testMachineCanBeLoadedWithCoffeeSupplies()
     {
         $this->machine->loadSupplies('Coffee', 5);
 
         $this->assertEquals(5, $this->machine->getSupplies('Coffee'));
         $this->assertEquals(0, $this->machine->getSupplies('Chocolate'));
+    }
+
+    public function testMachineCanBeLoadedWithChocolateSupplies()
+    {
+        $this->machine->loadSupplies('Chocolate');
+
+        $this->assertEquals(0, $this->machine->getSupplies('Coffee'));
+        $this->assertEquals(10, $this->machine->getSupplies('Chocolate'));
     }
 }

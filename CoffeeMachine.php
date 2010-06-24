@@ -14,7 +14,7 @@ class CoffeeMachine
         }
     }
 
-    public function loadSupplies($beverageName, $quantity)
+    public function loadSupplies($beverageName, $quantity = 10)
     {
         $this->supplies[$beverageName] += $quantity;
     }
