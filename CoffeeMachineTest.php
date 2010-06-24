@@ -43,7 +43,6 @@ class CoffeeMachineTest extends PHPUnit_Framework_TestCase
     public static function invalidCoffeeSuppliesNumber()
     {
         return array(
-            array(0),
             array(1),
             array(2),
             array(3),
@@ -60,9 +59,9 @@ class CoffeeMachineTest extends PHPUnit_Framework_TestCase
      * @dataProvider invalidCoffeeSuppliesNumber
      * @expectedException InvalidArgumentException
      */
-    public function testCoffeeSuppliesMustComeInMultiplesOfFive()
+    public function testCoffeeSuppliesMustComeInMultiplesOfFive($number)
     {
-        $this->machine->loadSupplies('Coffee', 4);
+        $this->machine->loadSupplies('Coffee', $number);
     }
 
     private function assertSuppliesAre($number, $beverageName)
