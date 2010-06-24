@@ -14,8 +14,15 @@ class CoffeeMachine
         }
     }
 
-    public function loadSupplies($beverageName, $quantity = 10)
+    public function loadSupplies($beverageName, $quantity = null)
     {
+        if ($quantity === null) {
+            if ($beverageName == "Chocolate") {
+                $quantity = 10;
+            } else {
+                throw new InvalidArgumentException("Only Chocolate has a predefined quantity of supplies to load.");
+            }
+        }
         $this->supplies[$beverageName] += $quantity;
     }
 

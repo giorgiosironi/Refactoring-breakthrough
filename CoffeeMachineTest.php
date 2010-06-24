@@ -32,6 +32,14 @@ class CoffeeMachineTest extends PHPUnit_Framework_TestCase
         $this->assertSuppliesAre(10, 'Chocolate');
     }
 
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testCoffeeSuppliesMustBeExplicitlyNumbered()
+    {
+        $this->machine->loadSupplies('Coffee');
+    }
+
     private function assertSuppliesAre($number, $beverageName)
     {
         $this->assertEquals($number, $this->machine->getSupplies($beverageName));
