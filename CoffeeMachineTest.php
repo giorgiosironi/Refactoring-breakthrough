@@ -1,4 +1,7 @@
 <?php
+require_once 'Supply.php';
+require_once 'CoffeeSupply.php';
+require_once 'ChocolateSupply.php';
 require_once 'CoffeeMachine.php';
 
 class CoffeeMachineTest extends PHPUnit_Framework_TestCase
@@ -18,7 +21,7 @@ class CoffeeMachineTest extends PHPUnit_Framework_TestCase
 
     public function testMachineCanBeLoadedWithCoffeeSupplies()
     {
-        $this->machine->loadSupplies('Coffee', 5);
+        $this->machine->loadSupplies(new CoffeeSupply(5));
 
         $this->assertSuppliesAre(5, 'Coffee');
         $this->assertSuppliesAre(0, 'Chocolate');
@@ -26,18 +29,18 @@ class CoffeeMachineTest extends PHPUnit_Framework_TestCase
 
     public function testMachineCanBeLoadedWithChocolateSupplies()
     {
-        $this->machine->loadSupplies('Chocolate');
+        $this->machine->loadSupplies(new ChocolateSupply);
 
         $this->assertSuppliesAre(0, 'Coffee');
         $this->assertSuppliesAre(10, 'Chocolate');
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException PHPUnit_Framework_Error
      */
     public function testCoffeeSuppliesMustBeExplicitlyNumbered()
     {
-        $this->machine->loadSupplies('Coffee');
+        new CoffeeSupply;
     }
 
     public static function invalidCoffeeSuppliesNumber()
@@ -61,7 +64,7 @@ class CoffeeMachineTest extends PHPUnit_Framework_TestCase
      */
     public function testCoffeeSuppliesMustComeInMultiplesOfFive($number)
     {
-        $this->machine->loadSupplies('Coffee', $number);
+        new CoffeeSupply($number);
     }
 
     private function assertSuppliesAre($number, $beverageName)
