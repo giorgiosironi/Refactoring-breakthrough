@@ -30,6 +30,9 @@ class CoffeeMachine
                 throw new InvalidArgumentException("Only Chocolate has a predefined quantity of supplies to load.");
             }
         }
+        if ($beverageName == "Coffee" and $quantity % 5 != 0) {
+            throw new InvalidArgumentException("Coffee supplies must come in multiples of 5.");
+        }
         return $quantity;
     }
 
