@@ -1,0 +1,5 @@
+<phpunit>
+    <testsuite name="Refactoring breakthrough test suite">
+            <directory suffix="Test.php">./</directory>
+    </testsuite>
+</phpunit>
