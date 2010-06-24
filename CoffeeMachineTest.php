@@ -12,23 +12,28 @@ class CoffeeMachineTest extends PHPUnit_Framework_TestCase
 
     public function testMachineIsLoadedWithZeroSuppliesAtCreation()
     {
-        $this->assertEquals(0, $this->machine->getSupplies('Coffee'));
-        $this->assertEquals(0, $this->machine->getSupplies('Chocolate'));
+        $this->assertSuppliesAre(0, 'Coffee');
+        $this->assertSuppliesAre(0, 'Chocolate');
     }
 
     public function testMachineCanBeLoadedWithCoffeeSupplies()
     {
         $this->machine->loadSupplies('Coffee', 5);
 
-        $this->assertEquals(5, $this->machine->getSupplies('Coffee'));
-        $this->assertEquals(0, $this->machine->getSupplies('Chocolate'));
+        $this->assertSuppliesAre(5, 'Coffee');
+        $this->assertSuppliesAre(0, 'Chocolate');
     }
 
     public function testMachineCanBeLoadedWithChocolateSupplies()
     {
         $this->machine->loadSupplies('Chocolate');
 
-        $this->assertEquals(0, $this->machine->getSupplies('Coffee'));
-        $this->assertEquals(10, $this->machine->getSupplies('Chocolate'));
+        $this->assertSuppliesAre(0, 'Coffee');
+        $this->assertSuppliesAre(10, 'Chocolate');
+    }
+
+    private function assertSuppliesAre($number, $beverageName)
+    {
+        $this->assertEquals($number, $this->machine->getSupplies($beverageName));
     }
 }
