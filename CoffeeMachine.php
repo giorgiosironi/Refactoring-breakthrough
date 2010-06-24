@@ -14,16 +14,23 @@ class CoffeeMachine
         }
     }
 
-    public function loadSupplies($beverageName, $quantity = null)
+    public function loadSupplies($beverageName, $optionalQuantity = null)
+    {
+        $quantity =  $this->getSuppliesQuantity($beverageName, $optionalQuantity);
+
+        $this->supplies[$beverageName] += $quantity;
+    }
+
+    private function getSuppliesQuantity($beverageName, $quantity)
     {
         if ($quantity === null) {
             if ($beverageName == "Chocolate") {
-                $quantity = 10;
+                return 10;
             } else {
                 throw new InvalidArgumentException("Only Chocolate has a predefined quantity of supplies to load.");
             }
         }
-        $this->supplies[$beverageName] += $quantity;
+        return $quantity;
     }
 
     public function getSupplies($beverageName)
